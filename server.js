@@ -1,21 +1,37 @@
 const inquirer = require('inquirer');
-const mysql2 = require('mysql2');
+// const express = require('express');
+// const app = express();
+const db = require('./db/connection')
 
-inquirer
+// app.use(express.urlencoded({ extended: false }));
+// app.use(express.json());
+
+
+const menu = inquirer
   .prompt([
     {
-    type: 'input',
-    name: 'name',
-    message: 'What is your name?',
-  },
-  {
-    type: 'input',
-    name: 'color',
-    message: 'What is your fav color?',
-  },
-  {
-    type: 'input',
-    name: 'food',
-    message: 'What is your fav food?',
-  },
-]);
+      type: 'list',
+      message: 'What would you like to do?',
+      name: 'options',
+      choices: ['view all departments','view all roles', 'view all employees'],
+    },
+  ])
+.then((response)=>{
+  if(response.options === 'view all departments'){
+    db.query('SELECT * FROM departments', function (err, results) {
+      console.table(results);
+    });
+  }
+  if(response.options === 'view all roles'){
+    db.query('SELECT * FROM roles', function (err, results) {
+      console.table(results);
+    });
+  }
+  if(response.options === 'view all employees'){
+    db.query('SELECT * FROM employees', function (err, results) {
+      console.table(results);
+    });
+  }
+})
+
+

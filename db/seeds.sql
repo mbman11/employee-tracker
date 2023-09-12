@@ -1,16 +1,24 @@
-INSERT INTO department (id, name)
-  VALUES (
-    1, "Web Department"
-  );
+INSERT INTO departments (name)
+  VALUES 
+   ("Web Development"),
+   ("Marketing"),
+   ("UX/UI")
+  ;
 
-INSERT INTO role (id, title, salary, department_id)
-  VALUES (
-    1, "Front End Dev", 200000.00, 22557
-  );
+INSERT INTO roles (title, salary, department_id)
+  VALUES 
+    ("Front End Dev", 200000.00, 1),
+    ("Web Dev Lead", 400000, 1),
+    ("Marketing Entry Level", 70000, 2),
+    ("UX Design Lead", 300000, 3)
+  ;
 
-  INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-  VALUES (
-    1, "Max", "Behrmann", 987987, 097098
-  );
+  INSERT INTO employees (first_name, last_name, role_id, manager_id)
+  VALUES 
+    ("Max", "Behrmann", 1, 2),
+    ("Kianu", "Reeves", 2, null),
+    ("John", "Stamos", 3, 2),
+    ("Whoopie", "Goldberg", 4, 2)
+    ;
 
 
