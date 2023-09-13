@@ -10,7 +10,7 @@ const db = mysql.createConnection(
     password: 'secretpasswordMaxbman1',
     database: 'employeeTracker_db'
   },
-  console.log(`Connected to the database.`)
+  console.log(`Welcome to the employee tracker! Use the arrow keys to get started.`)
 );
 
 // Query database

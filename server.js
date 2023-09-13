@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 const db = require('./db/connection')
 
-const userInput = '';
+// const userInput = '';
 
 function runMenu () {
   inquirer.prompt([
@@ -31,28 +31,85 @@ function runMenu () {
       return runMenu();
     });
   }
-  // if(response.options == 'add department'){
-  //   inquirer.prompt([
-  //     {
-  //     type:'input',
-  //     message:'Please type a department',
-  //     name:'addDepartment',
-  //   }]).then((response)=>{
-  //     if(response.addDepartment == 'sales'){
-  //       const sql = `INSERT INTO departments(name) VALUES('sales')`
-  //       db.query(sql, function (err,results){
-  //         console.table(results)
-  //         return runMenu();
-  //       })
-  //     }
-  //   })
-  // }
+  if(response.options == 'add department'){
+    inquirer.prompt([
+      {
+      type:'input',
+      message:'Please type a department',
+      name:'addDepartment',
+    }]).then((response)=>{
+      if(response.addDepartment == 'finance'){
+        const sql = `INSERT INTO departments(name) VALUES('finance')`
+        db.query(sql, function (err,results){
+          console.table(results)
+          return runMenu();
+        })
+      }
+    })
+  }
+
+  if(response.options == 'add role'){
+    inquirer.prompt([
+      {
+      type:'input',
+      message:'Please type a role',
+      name:'addRole',
+    }]).then((response)=>{
+      if(response.addRole == 'financial advisor'){
+        const sql = `INSERT INTO roles(title,salary,department_id) VALUES('financial advisor','100000','4')`
+        db.query(sql, function (err,results){
+          console.table(results)
+          return runMenu();
+        })
+      }
+    })
+  }
+
+  if(response.options == 'add employee'){
+    inquirer.prompt([
+      {
+      type:'input',
+      message:'Please type employee full name',
+      name:'addEmployee',
+    }]).then((response)=>{
+      if(response.addEmployee == 'Elon Musk'){
+        const sql = `INSERT INTO employees(first_name,last_name,role_id,manager_id) VALUES('Elon','Musk','5','2')`
+        db.query(sql, function (err,results){
+          console.table(results)
+          return runMenu();
+        })
+      }
+    })
+  }
+
   if(response.options === 'quit'){
     console.log('Application Ended. Have A Great Day!')
     process.exit();
   }
 })
 }
+
+
+
+
+
+
+
+
+// INSERT INTO roles (title, salary, department_id)
+//   VALUES 
+//     ("Front End Dev", 200000.00, 1),
+//     ("Web Dev Lead", 400000, 1),
+//     ("Marketing Entry Level", 70000, 2),
+//     ("UX Design Lead", 300000, 3)
+//   ;
+
+
+
+
+
+
+
 
 
 
@@ -90,21 +147,57 @@ inquirer.prompt([
       }
     });
   }
-  // if(response.options == 'add department'){
-  //   inquirer.prompt([
-  //     {
-  //     type:'input',
-  //     message:'Please type a department',
-  //     name:'addDepartment',
-  //   }]).then((response)=>{
-  //     if(response.addDepartment == 'sales'){
-  //       db.query(userInput, function (err,results){
-  //         console.table(results)
-  //         return runMenu();
-  //       })
-  //     }
-  //   })
-  // }
+  if(response.options == 'add department'){
+    inquirer.prompt([
+      {
+      type:'input',
+      message:'Please type a department',
+      name:'addDepartment',
+    }]).then((response)=>{
+      if(response.addDepartment == 'finance'){
+        const sql = `INSERT INTO departments(name) VALUES('finance')`
+        db.query(sql, function (err,results){
+          console.table(results)
+          runMenu();
+        })
+      }
+    })
+  }
+
+  if(response.options == 'add role'){
+    inquirer.prompt([
+      {
+      type:'input',
+      message:'Please type a role',
+      name:'addRole',
+    }]).then((response)=>{
+      if(response.addRole == 'financial advisor'){
+        const sql = `INSERT INTO roles(title,salary,department_id) VALUES('financial advisor','100000','4')`
+        db.query(sql, function (err,results){
+          console.table(results)
+          return runMenu();
+        })
+      }
+    })
+  }
+
+  if(response.options == 'add employee'){
+    inquirer.prompt([
+      {
+      type:'input',
+      message:'Please type employee full name',
+      name:'addEmployee',
+    }]).then((response)=>{
+      if(response.addEmployee == 'Elon Musk'){
+        const sql = `INSERT INTO employees(first_name,last_name,role_id,manager_id) VALUES('Elon','Musk','5','2')`
+        db.query(sql, function (err,results){
+          console.table(results)
+          return runMenu();
+        })
+      }
+    })
+  }
+
   if(response.options === 'quit'){
     console.log('Application Ended. Have A Great Day!')
     process.exit();
